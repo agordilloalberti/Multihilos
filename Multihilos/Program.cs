@@ -1,22 +1,17 @@
-﻿public class main()
-{
-    public static void Main(string[] args)
-    {
-        Thread player1 = new Thread();
-        player1.Start();
-        Thread player2 = new Thread();
-        player2.Start();
-    }
+﻿using Multihilos;
 
-    private static String playRPS()
-    {
-        var random = new Random();
-        var r = random.Next(1,4);
-        return r switch
-        {
-            1 => "Piedra",
-            2 => "Papel",
-            _ => "Tijera"
-        };
-    }
-}
+// MyEvents.finalizar = () => { Console.WriteLine("Suscriptor A"); };
+// MyEvents.finalizar += () => { Console.WriteLine("Suscriptor B"); };
+
+FinishEvent finalEvent = new FinishEvent();
+Wrapper<Action> finalEventv2 = new Wrapper<Action>(() => { });
+
+HiloPerso t1 = new HiloPerso("x",finalEventv2);
+HiloPerso t2 = new HiloPerso("y",finalEventv2);
+
+// MyEvents.finalizar += () => { Console.WriteLine("Suscriptor C"); };
+
+finalEvent.FinishAction += () => { Console.WriteLine("Suscriptor C"); };
+
+t1.Start();
+t2.Start();
