@@ -1,12 +1,16 @@
-﻿using CrackingPassword;
+﻿using System.Collections;
+using CrackingPassword;
 
-string[] contraseñas = {"~TIRED~","phpbb","zzzzzzzz1","zzzzzzdearbook","zzzz2727","zzz871101","zzy50138874","zzuyj0818",
-    "zznode1234","zzj6559041","zzg19780911","zz7896321"};
+const string path = @"..\..\..\2151220-passwords.txt";
 
-Random random = new Random();
-Encripter encripter = new Encripter();
-string password = contraseñas[random.Next(contraseñas.Length - 1)];
-string passworde = encripter.Encript(password);
+var contraseñas = File.ReadAllLines(path).ToList();
+
+var random = new Random();
+var encripter = new Encripter();
+
+var password = contraseñas[random.Next(contraseñas.Count-1)];
+
+var passworde = encripter.Encript(password);
 
 Console.WriteLine(password+"  "+passworde);
 
