@@ -11,7 +11,7 @@ var contraseñas = File.ReadAllLines(path).ToList();
 
 var random = new Random();
 var encripter = new Encripter();
-float Nhilos = 4;
+float Nhilos = 5;
 List<HiloBruteForce> hilos = new List<HiloBruteForce>();
 
 var password = contraseñas[random.Next(contraseñas.Count-1)];
@@ -38,10 +38,10 @@ for (int i = 0; i < Nhilos; i++)
 }
 
 //TODO: Make sure that, in case there is a rest, they are added to other threads
-if (contraseñas.Count()-cantidadContraseñas*Nhilos!=0)
-{
-    contraseñas.
-}
+// if (contraseñas.Count()-cantidadContraseñas*Nhilos!=0)
+// {
+//     contraseñas.
+// }
 
 
 foreach (var hilo in hilos)
